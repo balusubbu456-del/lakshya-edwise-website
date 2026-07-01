@@ -1,4 +1,5 @@
 import { adminLogin } from "./actions";
+import PasswordInput from "./PasswordInput";
 
 export default function AdminLoginPage({
   searchParams,
@@ -23,18 +24,8 @@ export default function AdminLoginPage({
         )}
 
         <form action={adminLogin} className="space-y-5">
-          <div>
-            <label className="mb-2 block font-medium text-gray-700">
-              Username
-            </label>
-            <input
-              type="text"
-              name="username"
-              placeholder="Enter username"
-              required
-              className="w-full rounded-lg border px-4 py-3 text-slate-900 placeholder:text-gray-400 outline-none focus:border-blue-600"
-            />
-          </div>
+          
+          <PasswordInput />
 
           <div>
             <label className="mb-2 block font-medium text-gray-700">
