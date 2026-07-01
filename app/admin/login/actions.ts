@@ -7,14 +7,16 @@ export async function adminLogin(formData: FormData) {
   const username = formData.get("username") as string;
   const password = formData.get("password") as string;
 
-  const adminUsername = process.env.ADMIN_USERNAME;
-  const adminPassword = process.env.ADMIN_PASSWORD;
-
-  if (username === adminUsername && password === adminPassword) {
+  if (
+    username === process.env.ADMIN_USERNAME &&
+    password === process.env.ADMIN_PASSWORD
+  ) {
     const cookieStore = await cookies();
 
     cookieStore.set("admin-auth", "true", {
       httpOnly: true,
+      secure: true,
+      sameSite: "strict",
       path: "/",
       maxAge: 60 * 60 * 24,
     });
@@ -27,7 +29,6 @@ export async function adminLogin(formData: FormData) {
 
 export async function adminLogout() {
   const cookieStore = await cookies();
-
   cookieStore.delete("admin-auth");
 
   redirect("/admin/login");
