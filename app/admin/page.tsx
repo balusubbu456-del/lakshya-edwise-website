@@ -86,11 +86,18 @@ export default async function AdminPage({
     1
   );
 
-  const countries = allLeads.reduce((acc: any, lead: any) => {
-    const country = lead.country || "Not Specified";
-    acc[country] = (acc[country] || 0) + 1;
-    return acc;
-  }, {});
+const countries = allLeads.reduce((acc: any, lead: any) => {
+  const country = (lead.country || "Not Specified")
+    .trim()
+    .toLowerCase();
+
+  const formatted =
+    country.charAt(0).toUpperCase() + country.slice(1);
+
+  acc[formatted] = (acc[formatted] || 0) + 1;
+
+  return acc;
+}, {});
 
   return (
     <div className="min-h-screen bg-gray-100 p-8 text-slate-900">
