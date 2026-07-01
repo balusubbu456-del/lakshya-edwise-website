@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 const Globe = dynamic(() => import("react-globe.gl"), {
   ssr: false,
   loading: () => (
-    <div className="flex h-[500px] w-[500px] items-center justify-center">
+    <div className="flex h-[420px] w-[420px] items-center justify-center text-cyan-300">
       Loading...
     </div>
   ),
@@ -13,7 +13,7 @@ const Globe = dynamic(() => import("react-globe.gl"), {
 
 export default function EarthGlobe() {
   return (
-    <div className="h-[500px] w-[500px]">
+    <div className="h-[420px] w-[420px] sm:h-[500px] sm:w-[500px]">
       <Globe
         width={500}
         height={500}
